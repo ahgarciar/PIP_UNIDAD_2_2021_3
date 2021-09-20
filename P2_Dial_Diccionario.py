@@ -2,7 +2,7 @@ import sys
 
 from PyQt5 import uic, QtWidgets
 
-qtCreatorFile = "P0_PlantillaImagenes.ui" # Nombre del archivo aquí.
+qtCreatorFile = "P2_Dial_Diccionario.ui" # Nombre del archivo aquí.
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
@@ -14,10 +14,26 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         # Área de los Signals
+        self.dial.setMinimum(-10)
+        self.dial.setMaximum(10)
+        self.dial.setSingleStep(2)
+
+        self.dial.setValue(-10)
+        self.txt_valor.setText("-10")
+
+        self.dial.valueChanged.connect(self.valorCambio)
+
 
 
 
     #area de slots
+    def valorCambio(self):
+        valor = self.dial.value()   ##int
+        print(valor)
+
+        valor = str(valor)
+
+        self.txt_valor.setText(valor)
 
 
     def mensaje(self,msj):
