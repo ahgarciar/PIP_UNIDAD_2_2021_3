@@ -1,0 +1,16 @@
+<RCC>
+  <qresource prefix="LOGO">
+    <file alias="AmongB">Imagenes/amongBlanco.png</file>
+  </qresource>
+  <qresource prefix="UAT_FIANS">
+    <file alias="FIANS">Imagenes/fians.png</file>
+    <file alias="UAT">Imagenes/uat.png</file>
+  </qresource>
+  <qresource prefix="NUMEROS">
+    <file alias="CINCO">Imagenes/cinco.png</file>
+    <file alias="CUATRO">Imagenes/cuatro.png</file>
+    <file alias="DOS">Imagenes/dos.png</file>
+    <file alias="TRES">Imagenes/tres.png</file>
+    <file alias="UNO">Imagenes/uno.png</file>
+  </qresource>
+</RCC>
