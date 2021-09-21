@@ -1,8 +1,8 @@
 import sys
 
-from PyQt5 import uic, QtWidgets
+from PyQt5 import uic, QtWidgets, QtGui
 
-qtCreatorFile = "P2_Dial_Diccionario.ui" # Nombre del archivo aquí.
+qtCreatorFile = "P3_Dial_Img.ui" # Nombre del archivo aquí.
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
@@ -24,15 +24,20 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.dial.valueChanged.connect(self.valorCambio)
 
         self.diccionario = {}
-        self.diccionario[0] = ["Jorge", "ISC"]
-        self.diccionario[1] = ["Chris", "IC"]
-        self.diccionario[2] = ["Jeremias", "ISC"]
-        self.diccionario[3] = ["Karla", "II"]
-        self.diccionario[4] = ["Granda", "IM"]
-        self.diccionario[5] = ["Villalobos", "IC"]
+        self.diccionario[0] = ["Jorge", "ISC", ":/NUMEROS/UNO"]
+        self.diccionario[1] = ["Chris", "IC", ":/NUMEROS/DOS"]
+        self.diccionario[2] = ["Jeremias", "ISC", ":/NUMEROS/TRES"]
+        self.diccionario[3] = ["Karla", "II", ":/NUMEROS/CUATRO"]
+        self.diccionario[4] = ["Granda", "IM", ":/NUMEROS/CINCO"]
+        self.diccionario[5] = ["Villalobos", "IC", ":/NUMEROS/UNO"]
 
         alumno = self.diccionario[0]
         self.txt_valor.setText(alumno[0])
+
+        self.txt_img.setPixmap(QtGui.QPixmap(alumno[2]))
+
+        #Tarea: Recrear el ejerccio con Las imagenes de los integrantes del equipo o
+        #cualquier tipo de personajes ficticios. Minimo 5 Personajes
 
     #area de slots
     def valorCambio(self):
@@ -47,6 +52,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.txt_valor.setText(alumno[0])
         print(alumno[1])
 
+        self.txt_img.setPixmap(QtGui.QPixmap(alumno[2]))
 
     def mensaje(self,msj):
         m = QtWidgets.QMessageBox()
