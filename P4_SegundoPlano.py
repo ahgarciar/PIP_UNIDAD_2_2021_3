@@ -1,8 +1,8 @@
 import sys
 
-from PyQt5 import uic, QtWidgets, QtGui
+from PyQt5 import uic, QtWidgets, QtGui, QtCore
 
-qtCreatorFile = "P3_Dial_Img.ui" # Nombre del archivo aquí.
+qtCreatorFile = "P4_SegundoPlano.ui" # Nombre del archivo aquí.
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
@@ -36,10 +36,53 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.txt_img.setPixmap(QtGui.QPixmap(alumno[2]))
 
-        #Tarea (Programa): Recrear el ejerccio con Las imagenes de los integrantes del equipo o
-        #cualquier tipo de personajes ficticios. Minimo 5 Personajes
+        print("Total Elementos Diccionariio: "  + str(len(self.diccionario)))
+
+        #########################################
+
+        self.btn_iniciar.clicked.connect(self.iniciar)
+
+        ###########################################
+
+        self.SegundoPlano = QtCore.QTimer()
+        self.SegundoPlano.timeout.connect(self.actualizaImagen)
+
 
     #area de slots
+    def actualizaImagen(self):
+        valor_actual = self.dial.value()  ##int
+        fin = len(self.diccionario)
+
+        print(valor_actual)
+        alumno = self.diccionario[valor_actual]  # obtencion del alumno asociado al indice que se esta consultando
+
+        self.txt_valor.setText(alumno[0])
+        self.txt_img.setPixmap(QtGui.QPixmap(alumno[2]))
+
+        self.dial.setValue(valor_actual+1)
+
+        if valor_actual + 1 == fin:
+            self.SegundoPlano.stop()
+
+        # Tarea (Practica 2) - "Slider" de Imagenes <-- Video para el lunes 27 de sept
+
+    def iniciar(self):
+        self.SegundoPlano.start(1000)
+
+        #valor_actual = self.dial.value()   ##int
+        #fin = len(self.diccionario)
+
+        #import time as t
+
+        #for i in range(valor_actual, fin):
+        #    print(i)
+        #    alumno = self.diccionario[i] #obtencion del alumno asociado al indice que se esta consultando
+
+        #    self.txt_valor.setText(alumno[0])
+        #    self.txt_img.setPixmap(QtGui.QPixmap(alumno[2]))
+
+            #t.sleep(1)
+
     def valorCambio(self):
         valor = self.dial.value()   ##int
         print(valor)
